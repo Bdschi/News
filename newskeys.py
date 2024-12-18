@@ -22,11 +22,12 @@ import sqlite3
 import os
 
 # Function to get latest news articles
-def get_latest_news(api_key, query=''):
-    url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={api_key}'
-    url = f'https://newsapi.org/v2/everything?apiKey={api_key}'
+def get_latest_news(api_key, fromdate=None, query=''):
+    url = f'https://newsapi.org/v2/everything?language=en&apiKey={api_key}'
     if query:
         url += f'&q={query}'
+    if fromdate:
+        url += f'&from={fromdate.strftime("%Y-%m-%d")}'
 
     response = requests.get(url)
     if response.status_code == 200:
@@ -44,10 +45,11 @@ def extract_keywords(articles):
 
     for article in articles:
         title = article['title']
-        url = article['url']
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        content = soup.get_text()
+        #url = article['url']
+        #response = requests.get(url)
+        #soup = BeautifulSoup(response.content, 'html.parser')
+        #content = soup.get_text()
+        content = article['description']
         text = f"{title} {content}"
 
         rake.extract_keywords_from_text(text)
@@ -68,24 +70,23 @@ def extract_keywords(articles):
 
 # Main function
 def main():
-    # Connect to SQLite database (or create it if it doesn't exist)
-    conn = sqlite3.connect('keywords.db')
-    cursor = conn.cursor()
-
     api_key = os.environ.get('API_KEY')
-    articles = get_latest_news(api_key, query='lifestyle')
     current_timestamp = datetime.now()
+    seven_days = current_timestamp - timedelta(days=7)
+    articles = get_latest_news(api_key, fromdate=seven_days, query='lifestyle')
+
     iso_week_number = current_timestamp.isocalendar().week
     # Calculate the number of days to subtract to get to the last Thursday
     #today = datetime.date.today()
     days_to_thursday = (current_timestamp.weekday() - 3) % 7  # 3 is Thursday (0=Monday, 6=Sunday)
-
     # Get the date of the Thursday of the current week
     thursday_date = current_timestamp - timedelta(days=days_to_thursday)
-
     # Get the year of that Thursday
     thursday_year = thursday_date.year
 
+    # Connect to SQLite database (or create it if it doesn't exist)
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
     if articles:
         keywords = extract_keywords(articles)
         keywords = dict(sorted(keywords.items(), key=lambda item: item[1], reverse=True))
@@ -94,7 +95,7 @@ def main():
             cursor.execute('''
             INSERT INTO keywords (ts,week,score,phrase)
             VALUES (?, ?, ?, ?)
-            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M%S"),100*thursday_year+iso_week_number,score,phrase))
+            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M:%S"),100*thursday_year+iso_week_number,score,phrase))
     else:
         print("no articles found")
 
