@@ -15,13 +15,11 @@
 
 import requests
 from rake_nltk import Rake
-import re
+from bs4 import BeautifulSoup
 from datetime import datetime
 from datetime import timedelta
 import sqlite3
-
-def remove_html_tags(text):
-    return re.sub('<[^>]+>', '', text)
+import os
 
 # Function to get latest news articles
 def get_latest_news(api_key, query=''):
@@ -40,28 +38,16 @@ def get_latest_news(api_key, query=''):
         return []
 
 # Function to extract keywords using RAKE
-def extract_keywords_title(articles):
-    rake = Rake(max_length=4)
-    keywords = {}
-
-    for article in articles:
-        title = article['title']
-        content = remove_html_tags(article['content']) if article['content'] else ''
-        text = f"{title} {content}"
-
-        rake.extract_keywords_from_text(text)
-        keywords[title] = rake.get_ranked_phrases()  # Get keywords for the article
-
-    return keywords
-
-# Function to extract keywords using RAKE
 def extract_keywords(articles):
     rake = Rake()
     keywords = {}
 
     for article in articles:
         title = article['title']
-        content = remove_html_tags(article['content']) if article['content'] else ''
+        url = article['url']
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        content = soup.get_text()
         text = f"{title} {content}"
 
         rake.extract_keywords_from_text(text)
@@ -86,7 +72,7 @@ def main():
     conn = sqlite3.connect('keywords.db')
     cursor = conn.cursor()
 
-    api_key = 'df65106b962f4d07bb5311a4a8674087'
+    api_key = os.environ.get('API_KEY')
     articles = get_latest_news(api_key, query='lifestyle')
     current_timestamp = datetime.now()
     iso_week_number = current_timestamp.isocalendar().week
@@ -101,10 +87,6 @@ def main():
     thursday_year = thursday_date.year
 
     if articles:
-        #keywords = extract_keywords_title(articles)
-        #for title, keyword_list in keywords.items():
-        #    print(f"Title: {title}")
-        #    print(f"Keywords: {', '.join(keyword_list)}\n")
         keywords = extract_keywords(articles)
         keywords = dict(sorted(keywords.items(), key=lambda item: item[1], reverse=True))
         for phrase, score in keywords.items():
