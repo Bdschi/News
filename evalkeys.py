@@ -31,7 +31,23 @@ def main():
     tsthis = cursor.fetchone()[0]  # Fetch the result
     print(f'The number of timestamps in the table "keywords" for this week is: {tsthis}')
 
-    cursor.execute("select phrase, s_score from (select phrase, sum(score) s_score from keywords where week=? group by phrase) x order by s_score desc limit 20",(thisweek,))
+    cursor.execute("select phrase, s_score from (select phrase, sum(score) s_score from keywords where week=? group by phrase) x order by s_score desc limit 50",(thisweek,))
+    for row in cursor:
+        print(row)
+
+    cursor.execute("update keywords set ts='2024-12-17 22:19:02' where ts='2024-12-17 22:19:02.550665'")
+    conn.commit()
+
+    cursor.execute("update keywords set ts='2024-12-17 19:59:40' where ts='2024-12-17 19:59:40.316094'")
+    conn.commit()
+
+    cursor.execute("update keywords set ts='2024-12-18 17:57:26' where ts='2024-12-18 17:5726'")
+    conn.commit()
+
+    cursor.execute("update keywords set ts='2024-12-18 20:23:53' where ts='2024-12-18 20:2353'")
+    conn.commit()
+
+    cursor.execute("select week, ts, count(*) from keywords group by ts, week")
     for row in cursor:
         print(row)
 
