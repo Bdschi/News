@@ -20,6 +20,10 @@ from datetime import datetime
 from datetime import timedelta
 import sqlite3
 import os
+import re
+
+def clean_text(text):
+    return re.sub('<[^>]+>', '', text)
 
 # Function to get latest news articles
 def get_latest_news(api_key, fromdate=None, query=''):
@@ -40,7 +44,7 @@ def get_latest_news(api_key, fromdate=None, query=''):
 
 # Function to extract keywords using RAKE
 def extract_keywords(articles):
-    rake = Rake()
+    rake = Rake(max_length=4)
     keywords = {}
 
     for article in articles:
@@ -49,7 +53,7 @@ def extract_keywords(articles):
         #response = requests.get(url)
         #soup = BeautifulSoup(response.content, 'html.parser')
         #content = soup.get_text()
-        content = article['description']
+        content = clean_text(article['description'])
         text = f"{title} {content}"
 
         rake.extract_keywords_from_text(text)
