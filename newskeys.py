@@ -23,7 +23,9 @@ import os
 import re
 
 def clean_text(text):
-    return re.sub('<[^>]+>', '', text)
+    text = re.sub('[^a-zA-Z0-9 ]+', ',', text)
+    text = re.sub('<[^>]+>', '', text)
+    return text
 
 # Function to get latest news articles
 def get_latest_news(api_key, fromdate=None, query=''):
@@ -74,7 +76,8 @@ def extract_keywords(articles):
 
 # Main function
 def main():
-    api_key = os.environ.get('API_KEY')
+    os.system(". ./pw.txt")
+    api_key = os.environ.get('NEWSAPI_KEY')
     current_timestamp = datetime.now()
     seven_days = current_timestamp - timedelta(days=7)
     articles = get_latest_news(api_key, fromdate=seven_days, query='lifestyle')
