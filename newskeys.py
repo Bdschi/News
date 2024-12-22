@@ -23,8 +23,12 @@ import os
 import re
 
 def clean_text(text):
-    text = re.sub('[^a-zA-Z0-9 ]+', ',', text)
+    otext=text
+    text = re.sub("[^a-zA-Z0-9 '.&£€$]+", ",", text)
     text = re.sub('<[^>]+>', '', text)
+    if otext!= text:
+        print("original text:"+otext)
+        print("modified text:"+text)
     return text
 
 # Function to get latest news articles
