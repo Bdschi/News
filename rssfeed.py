@@ -2,6 +2,8 @@ import feedparser
 import csv
 import sqlite3
 import traceback
+import requests
+from io import BytesIO
 
 def inittable():
     conn = sqlite3.connect('keywords.db')
@@ -25,14 +27,22 @@ def inittable():
     conn.commit()
     conn.close()
 
-def saveart(conn,name,title,link,published,description):
+def getid(conn,link):
     cursor = conn.cursor()
     cursor.execute('''
-        select count(*) from rssarticles
+        select id from rssarticles
         where link=?
         ''', (link,))
-    exists = cursor.fetchone()[0]
-    if exists==0:
+    row=cursor.fetchone()
+    if row:
+        return row[0]
+    else:
+        return 0
+
+def saveart(conn,name,title,link,published,description):
+    id=getid(conn,link)
+    if id==0:
+        cursor = conn.cursor()
         cursor.execute('''
             insert into rssarticles
             (source,title,link,published,description)
@@ -40,6 +50,8 @@ def saveart(conn,name,title,link,published,description):
             (?,?,?,?,?)
             ''', (name,title,link,published,description))
         conn.commit()
+        return True
+    return False
 
 def stati(conn):
     cursor = conn.cursor()
@@ -50,30 +62,42 @@ def stati(conn):
     stat = cursor.fetchone()
     print(stat)
 
+def listi(conn):
+    cursor = conn.cursor()
+    cursor.execute('''
+        select *
+        from rssarticles
+        ''')
+    for row in cursor:
+        print(row)
+
 #inittable()
+#listi(conn)
 with open('listrss.txt', 'r') as file:
     conn = sqlite3.connect('keywords.db')
     stati(conn)
     reader = csv.reader(file)
     for row in reader:
         # Process each row here
-        name=row[0]
-        print("Name:", name)
+        feedname=row[0]
+        #print("Feed:", feedname)
         rssurl=row[1]
         try:
-            feed = feedparser.parse(rssurl)
+            resp = requests.get(rssurl, timeout=20.0)
+            content = BytesIO(resp.content)
+            feed = feedparser.parse(content)
         except:
-            traceback.print_exc()
-            print(f"No RSS Feed at {rssurl}")
+            #traceback.print_exc()
+            print(f"{feedname}: No RSS Feed at '{rssurl}'")
             feed=None 
-        # Print the feed title
-        if "feed" in feed and "title" in feed.feed:
-            print("Feed Title:", feed.feed.title)
+        if feed and "feed" in feed and "title" in feed.feed:
+            print(feed.feed.title)
             # Loop through the entries and print titles
             for entry in feed.entries:
-                print("\tEntry Title:", entry.title)
-                print("\tEntry Link:", entry.link)
-                print("\tPublished Date:", entry.get("published"))
-                print("\tDescription:", entry.get("description"))
-                saveart(conn,name,entry.title,entry.link,entry.get("published"),entry.get("description"))
+                new=saveart(conn,feedname,entry.title,entry.link,entry.get("published"),entry.get("description"))
+                if new:
+                    print("\t" + entry.title)
+                    #print("\tEntry Link:", entry.link)
+                    #print("\tPublished Date:", entry.get("published"))
+                    #print("\tDescription:", entry.get("description"))
     conn.close()

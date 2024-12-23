@@ -1,17 +1,17 @@
 BBC News » World RSS Feed,http://feeds.bbci.co.uk/news/world/rss.xml
 NBC News RSS Feed,https://www.nbcnews.com/id/3032091/device/rss/rss.xml
 CNN » World RSS Feed,http://rss.cnn.com/rss/edition_world.rss
-AP News RSS Feed,
+AP News RSS Feed,http://hosted2.ap.org/APDEFAULT/APNewsFeeds
 CNBC » World News RSS Feed,https://www.cnbc.com/id/100727362/device/rss/rss.html
 ABC News » International RSS Feed,http://abcnews.go.com/abcnews/internationalheadlines
 Fox News RSS Feed,http://feeds.foxnews.com/foxnews/latest
 Al Jazeera RSS Feed,http://www.aljazeera.com/xml/rss/all.xml
 CBS News » World RSS Feed,https://www.cbsnews.com/latest/rss/world
-CBC » World News RSS Feed,http://www.cbc.ca/cmlink/rss-world
+CBC » World News RSS Feed,https://www.cbc.ca/rss/
 France 24 RSS Feed,https://www.france24.com/en/rss
 U.S. News & World Report RSS Feed,
 The New York Times » World RSS Feed,https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml
-DW News RSS Feed,
+DW News RSS Feed,https://rss.dw.com/rdf/rss-en-all
 Washington Post » World RSS Feed,https://feeds.washingtonpost.com/rss/world
 Global News » World RSS Feed,https://globalnews.ca/world/feed/
 TIME » World RSS Feed,http://feeds.feedburner.com/time/world
@@ -19,7 +19,7 @@ TIME » World RSS Feed,http://feeds.feedburner.com/time/world
 Yahoo News - World RSS Feed,https://www.yahoo.com/news/rss/world/
 WUGT News RSS Feed,
 The Washington Times » World RSS Feed,http://www.washingtontimes.com/rss/headlines/news/world
-USA TODAY RSS Feed,
+USA TODAY RSS Feed,https://usatoday.com
 The Sydney Morning Herald » World RSS Feed,http://www.smh.com.au/rssheadlines/world/article/rss.xml
 Sky News » World RSS Feed,http://feeds.skynews.com/feeds/rss/world.xml
 Los Angeles Times » World & Nation RSS Feed,https://www.latimes.com/world/rss2.0.xml
@@ -35,7 +35,7 @@ Global Issues RSS Feed,https://www.globalissues.org/news/feed
 Daily Mirror - World news RSS Feed,http://www.mirror.co.uk/news/world-news/rss.xml
 The Cipher Brief RSS Feed,https://www.thecipherbrief.com/feed
 Daily Express » World News RSS Feed,http://feeds.feedburner.com/daily-express-world-news
-Euronews - International RSS Feed,
+Euronews - International RSS Feed,https://www.euronews.com/rss
 Vox » World RSS Feed,https://www.vox.com/rss/world-politics/index.xml
  CTV News » World RSS Feed,https://www.ctvnews.ca/rss/world/ctvnews-ca-world-public-rss-1.822289
 Channel NewsAsia - World RSS Feed,http://www.channelnewsasia.com/rssfeeds/8395884
@@ -72,6 +72,7 @@ Public News Update RSS Feed,https://publicnewsupdate.com/feed/
 USNN World News RSS Feed,https://www.usnn.news/feed/
 World United News RSS Feed,http://worldunitednews.blogspot.com/feeds/posts/default
 South China Morning Post RSS Feed,https://www.scmp.com/rss/91/feed
+Lifestyle - South China Morning Post,https://www.scmp.com/rss/94/feed
  The Independent - World RSS Feed,http://www.independent.co.uk/news/world/rss
 Public Radio International RSS Feed,https://www.pri.org/stories/feed/everything
 ABC Australia - World RSS Feed,https://www.abc.net.au/news/feed/52278/rss.xml
@@ -149,4 +150,14 @@ Africa Launch Pad RSS Feed,https://africalaunchpad.com/feed/
 Ppapi blogue RSS Feed,https://ppapiblogue.blogspot.com/feeds/posts/default?alt=rss
 Headlinecode RSS Feed,https://headlinecode.com/feed/
 Army Youtube RSS Feed,https://armyyoutube.com/feeds/posts/default?alt=rss
-Reuters RSS Feed,
+Reuters RSS Feed,https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best
+Reuters Entertainment and Lifestyle RSS Feed,https://www.reutersagency.com/feed/?best-topics=lifestyle-entertainment&post_type=best
+Google Trends,https://trends.google.com/trending?geo=US
+Trend Hunter RSS Feeds,https://www.trendhunter.com/rssfeeds
+Lifestyle Magazine RSS Feed,https://lmgfl.com/feed/
+Better Living RSS Feed,https://onbetterliving.com/feed/
+"E! Online - Entertainment News, Celebrity Gossip, Celebrity News RSS Feed",https://www.eonline.com/syndication/feeds/rssfeeds/topstories.xml
+NHK RSS Feed,http://www3.nhk.or.jp/rss/news/cat0.xml
+The Japan Times RSS Feed,https://www.japantimes.co.jp/feed/
+Xinhuanet World News,http://www.xinhuanet.com/english/rss/worldrss.xml
+Xinhuanet China News,http://www.xinhuanet.com/english/rss/chinarss.xml
