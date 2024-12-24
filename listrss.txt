@@ -17,14 +17,12 @@ Global News » World RSS Feed,https://globalnews.ca/world/feed/
 TIME » World RSS Feed,http://feeds.feedburner.com/time/world
  NPR:National Public Radio » World RSS Feed,http://www.npr.org/rss/rss.php?id=1004
 Yahoo News - World RSS Feed,https://www.yahoo.com/news/rss/world/
-WUGT News RSS Feed,
 The Washington Times » World RSS Feed,http://www.washingtontimes.com/rss/headlines/news/world
 USA TODAY RSS Feed,https://usatoday.com
 The Sydney Morning Herald » World RSS Feed,http://www.smh.com.au/rssheadlines/world/article/rss.xml
 Sky News » World RSS Feed,http://feeds.skynews.com/feeds/rss/world.xml
 Los Angeles Times » World & Nation RSS Feed,https://www.latimes.com/world/rss2.0.xml
-The Seattle Times - World RSS Feed,https://www.seattletimes.com/nation-world/world/feed/
-NewsZetu.com RSS Feed,
+The Seattle Times - World RSS Feed,https://www.seattletimes.com/nation-world/feed/
 Times of India » World News RSS Feed,https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
 RT » World news RSS Feed,https://www.rt.com/rss/news/
 Reuters » World News RSS Feed,
@@ -41,7 +39,6 @@ Vox » World RSS Feed,https://www.vox.com/rss/world-politics/index.xml
 Channel NewsAsia - World RSS Feed,http://www.channelnewsasia.com/rssfeeds/8395884
 News24 - World RSS Feed,http://feeds.news24.com/articles/news24/World/rss
 Raw Story - World RSS Feed,https://www.rawstory.com/category/world/feed/
-Brookings » International Affairs RSS Feed,
 CBN News | Christian World News RSS Feed,http://www1.cbn.com/cbnnews/world/feed
 War on the Rocks RSS Feed,https://warontherocks.com/feed/
 Defence Blog RSS Feed,https://defence-blog.com/feed/
@@ -68,7 +65,6 @@ The Next Hint RSS Feed,https://www.thenexthint.com/feed/
 Forsige RSS Feed,https://www.forsige.com/feed/
 Newslanes | The News Hub RSS Feed,https://newslanes.com/feed/
 AkinBlog RSS Feed,https://www.akinblog.com/feed/
-Public News Update RSS Feed,https://publicnewsupdate.com/feed/
 USNN World News RSS Feed,https://www.usnn.news/feed/
 World United News RSS Feed,http://worldunitednews.blogspot.com/feeds/posts/default
 South China Morning Post RSS Feed,https://www.scmp.com/rss/91/feed
@@ -115,12 +111,10 @@ Cosmic Times RSS Feed,https://cosmic-times.com/feed/
 amnews247 RSS Feed,https://amnews247.com/feed/
 HGS Media Plus RSS Feed,https://hgsmediaplus.com/feed/
 TFT News RSS Feed,https://tftnews.com/feed/
-Roce Today RSS Feed,https://rocetoday.com/feed/
 BBCbreakingnews RSS Feed,https://bbcbreakingnews.com/feed/
 The Times in Plain English RSS Feed,https://www.thetimesinplainenglish.com/feed/
 NewsDesk RSS Feed,https://www.newsdesk.io/feed/
 RapidGist RSS Feed,https://www.rapidgist.com/feed/
-Nedu Wealth RSS Feed,https://web.neduwealth.com/feeds/posts/default
 The Baltic Word RSS Feed,https://balticword.eu/feed
 Ebysblog.com RSS Feed,https://ebysblog.com/feed
 Daily Echoed RSS Feed,https://www.dailyechoed.com/feed
@@ -133,7 +127,6 @@ World News 4 You RSS Feed,https://www.worldnews2you.gq/feeds/posts/default?alt=r
 Dainik Viral RSS Feed,https://www.dainikviral.com/feed/
 AwkwardVibes RSS Feed,https://awkwardvibes.com/feed
 Quicktrendnews RSS Feed,https://quicktrendnews.wordpress.com/feed/
-kizzyklicks Blog RSS Feed,https://www.kizzyklicks.com/feeds/posts/default
 World update RSS Feed,https://worldupdatedaily.blogspot.com/feeds/posts/default?alt=rss
 Reporter Fox RSS Feed,https://www.reporterfox.com/feed/
 Worldpress live RSS Feed,https://www.worldpresslive.com/feeds/posts/default
@@ -143,7 +136,6 @@ NewsWarden RSS Feed,https://newswarden.com/feed/
 Swagonnews RSS Feed,https://swagonnews.com/feed/
 News Observatory RSS Feed,https://newsobservatory.com/feed/
 NH Politician RSS Feed,https://www.nhpolitician.com/feed/
-World Celebrity News RSS Feed,https://www.worldcelebritynews.com/feed/
 The Daniels Post World RSS Feed,https://danielspost.news.blog/feed/
 Breaking News RSS Feed,https://bbcstoriesnews.blogspot.com/feeds/posts/default?alt=rss
 Africa Launch Pad RSS Feed,https://africalaunchpad.com/feed/
@@ -157,7 +149,6 @@ Trend Hunter RSS Feeds,https://www.trendhunter.com/rssfeeds
 Lifestyle Magazine RSS Feed,https://lmgfl.com/feed/
 Better Living RSS Feed,https://onbetterliving.com/feed/
 "E! Online - Entertainment News, Celebrity Gossip, Celebrity News RSS Feed",https://www.eonline.com/syndication/feeds/rssfeeds/topstories.xml
-NHK RSS Feed,http://www3.nhk.or.jp/rss/news/cat0.xml
 The Japan Times RSS Feed,https://www.japantimes.co.jp/feed/
 Xinhuanet World News,http://www.xinhuanet.com/english/rss/worldrss.xml
 Xinhuanet China News,http://www.xinhuanet.com/english/rss/chinarss.xml
