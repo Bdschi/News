@@ -175,7 +175,7 @@ with open('listrss.txt', 'r') as file:
         #print("Feed:", feedname)
         rssurl=row[1]
         try:
-            resp = requests.get(rssurl, timeout=20.0)
+            resp = requests.get(rssurl, headers={"User-Agent":"Mozilla/5.0"}, timeout=20.0)
             content = BytesIO(resp.content)
             feed = feedparser.parse(content)
         except:
