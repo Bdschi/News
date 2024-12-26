@@ -18,6 +18,7 @@
 "Breaking News RSS Feed",https://bbcstoriesnews.blogspot.com/feeds/posts/default?alt=rss
 "BreakingNews - World RSS Feed",https://feeds.breakingnews.ie/bnworld
 "BuzzFeed » World RSS Feed",https://www.buzzfeed.com/world.xml
+"BuzzFeed » Style RSS Feed",https://www.buzzfeed.com/style.xml
 "CBC » World News RSS Feed",https://www.cbc.ca/rss/
 "CBN News | Christian World News RSS Feed",http://www1.cbn.com/cbnnews/world/feed
 "CBS News » World RSS Feed",https://www.cbsnews.com/latest/rss/world
@@ -136,7 +137,6 @@
 "Vox » World RSS Feed",https://www.vox.com/rss/world-politics/index.xml
 "War News Updates RSS Feed",http://feeds.feedburner.com/WarNewsUpdates
 "War on the Rocks RSS Feed",https://warontherocks.com/feed/
-"Warritatafo RSS Feed",https://warritatafo.com/feed/
 "Washington Post » World RSS Feed",https://feeds.washingtonpost.com/rss/world
 "Watchdog Uganda RSS Feed",https://www.watchdoguganda.com/feed
 "World Affairs Journal RSS Feed",https://www.worldaffairsjournal.org/feed/
