@@ -40,18 +40,94 @@ def getid(conn,link):
         return 0
 
 def saveart(conn,name,title,link,published,description):
+    feed_id=regFeed(conn, feedname)
     id=getid(conn,link)
     if id==0:
         cursor = conn.cursor()
         cursor.execute('''
             insert into rssarticles
-            (source,title,link,published,description)
+            (feed_id,source,title,link,published,description)
             values
-            (?,?,?,?,?)
-            ''', (name,title,link,published,description))
+            (?,?,?,?,?,?)
+            ''', (feed_id,name,title,link,published,description))
         conn.commit()
         return True
     return False
+
+def initRssfeed():
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        DROP TABLE IF EXISTS rssfeed
+        ''')
+    cursor.execute('''
+        CREATE TABLE rssfeed (
+        id integer primary key autoincrement,
+        name text,
+        category text NULL,
+        ts timestamp default current_timestamp,
+        unique(name)
+    )
+    ''')
+    conn.commit()
+
+    cursor.execute('''
+         INSERT INTO rssfeed (name)
+         SELECT distinct source from rssarticles
+    ''')
+    conn.commit()
+
+    #drop column feed_id if exist
+    cursor.execute("PRAGMA table_info(rssarticles)")
+    columns = cursor.fetchall()
+    column_exists = False
+    for row in columns:
+        if row[1] == 'feed_id':
+            column_exists = True
+            break
+    if column_exists:
+        cursor.execute("ALTER TABLE rssarticles DROP COLUMN feed_id")
+        conn.commit()
+
+    cursor.execute('''
+        ALTER TABLE rssarticles ADD COLUMN feed_id integer
+    ''')
+    conn.commit()
+
+    cursor.execute('''
+         UPDATE rssarticles SET feed_id = (
+            SELECT id FROM rssfeed
+            WHERE name=rssarticles.source)
+    ''')
+    conn.commit()
+
+    conn.close()
+
+def getFeedId(conn,name):
+    cursor = conn.cursor()
+    cursor.execute('''
+        select id from rssfeed
+        where name=?
+        ''', (name,))
+    row=cursor.fetchone()
+    if row:
+        return row[0]
+    else:
+        return 0
+
+def regFeed(conn,name):
+    cursor = conn.cursor()
+    id=getFeedId(conn,name)
+    if id==0:
+        cursor.execute('''
+            insert into rssfeed
+            (name)
+            values
+            (?)
+            ''', (name,))
+        conn.commit()
+        id=getFeedId(conn,name)
+    return id
 
 def stati(conn):
     cursor = conn.cursor()
@@ -62,7 +138,8 @@ def stati(conn):
     stat = cursor.fetchone()
     print(stat)
 
-def listi(conn):
+def listi():
+    conn = sqlite3.connect('keywords.db')
     cursor = conn.cursor()
     cursor.execute('''
         select *
@@ -70,9 +147,23 @@ def listi(conn):
         ''')
     for row in cursor:
         print(row)
+    conn.close()
+
+def listf():
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        select *
+        from rssfeed
+        ''')
+    for row in cursor:
+        print(row)
+    conn.close()
 
 #inittable()
-#listi(conn)
+#initRssfeed()
+#listf()
+#listi()
 with open('listrss.txt', 'r') as file:
     conn = sqlite3.connect('keywords.db')
     stati(conn)
@@ -91,7 +182,7 @@ with open('listrss.txt', 'r') as file:
             print(f"{feedname}: No RSS Feed at '{rssurl}'")
             feed=None 
         if feed and "feed" in feed and "title" in feed.feed:
-            print(feed.feed.title)
+            print(f"{feedname} ({feed.feed.title})")
             # Loop through the entries and print titles
             for entry in feed.entries:
                 new=saveart(conn,feedname,entry.title,entry.link,entry.get("published"),entry.get("description"))
