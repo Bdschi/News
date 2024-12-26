@@ -21,14 +21,15 @@ from datetime import timedelta
 import sqlite3
 import os
 import re
+import sys
 
 def clean_text(text):
     otext=text
     text = re.sub("[^a-zA-Z0-9 '.&£€$]+", ",", text)
     text = re.sub('<[^>]+>', '', text)
-    if otext!= text:
-        print("original text:"+otext)
-        print("modified text:"+text)
+    #if otext!= text:
+    #    print("original text:"+otext)
+    #    print("modified text:"+text)
     return text
 
 # Function to get latest news articles
@@ -49,18 +50,26 @@ def get_latest_news(api_key, fromdate=None, query=''):
         return []
 
 # Function to extract keywords using RAKE
-def extract_keywords(articles):
+def extract_keywords(flag, articles):
     rake = Rake(max_length=4)
     keywords = {}
 
     for article in articles:
         title = article['title']
-        #url = article['url']
-        #response = requests.get(url)
-        #soup = BeautifulSoup(response.content, 'html.parser')
-        #content = soup.get_text()
-        content = clean_text(article['description'])
-        text = f"{title} {content}"
+        if flag == 'A':
+            url = article['url']
+            try:
+                response = requests.get(url)
+            except:
+                print(f"Could not read {url}")
+                continue
+            soup = BeautifulSoup(response.content, 'html.parser')
+            content = soup.get_text()
+        else:
+            if not article['description']:
+                continue
+            content = clean_text(article['description'])
+        text = f"{title}, {content}"
 
         rake.extract_keywords_from_text(text)
         keywords_with_scores = rake.get_ranked_phrases_with_scores()
@@ -80,6 +89,12 @@ def extract_keywords(articles):
 
 # Main function
 def main():
+    # TODO: improve processing of arg parsing
+    flag='D'
+    if len(sys.argv)>1 and sys.argv[1]=='A':
+        flag='A'
+    now = datetime.now()
+    print(now, "start of program",sys.argv[0], flag)
     os.system(". ./pw.txt")
     api_key = os.environ.get('NEWSAPI_KEY')
     current_timestamp = datetime.now()
@@ -99,14 +114,14 @@ def main():
     conn = sqlite3.connect('keywords.db')
     cursor = conn.cursor()
     if articles:
-        keywords = extract_keywords(articles)
+        keywords = extract_keywords(flag, articles)
         keywords = dict(sorted(keywords.items(), key=lambda item: item[1], reverse=True))
         for phrase, score in keywords.items():
             #print(f"{current_timestamp},{thursday_year}{iso_week_number},{score},\"{phrase}\"")
             cursor.execute('''
-            INSERT INTO keywords (ts,week,score,phrase)
-            VALUES (?, ?, ?, ?)
-            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M:%S"),100*thursday_year+iso_week_number,score,phrase))
+            INSERT INTO keywords (ts,week,flag,score,phrase)
+            VALUES (?, ?, ?, ?, ?)
+            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M:%S"),100*thursday_year+iso_week_number,flag,score,phrase))
     else:
         print("no articles found")
 

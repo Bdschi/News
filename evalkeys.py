@@ -132,7 +132,7 @@ def main():
     for row in cursor:
         print(f"{row[0]:5.1f} '{row[1]}'")
 
-    cursor.execute("select week, ts, count(*) from keywords group by ts, week")
+    cursor.execute("select week, ts, flag, count(*) from keywords group by ts, week, flag")
     for row in cursor:
         print(row)
 
