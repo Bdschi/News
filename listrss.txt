@@ -137,7 +137,7 @@
 "Vox » World RSS Feed",https://www.vox.com/rss/world-politics/index.xml
 "War News Updates RSS Feed",http://feeds.feedburner.com/WarNewsUpdates
 "War on the Rocks RSS Feed",https://warontherocks.com/feed/
-"Washington Post » World RSS Feed",https://feeds.washingtonpost.com/rss/world
+#"Washington Post » World RSS Feed",https://feeds.washingtonpost.com/rss/world
 "Watchdog Uganda RSS Feed",https://www.watchdoguganda.com/feed
 "World Affairs Journal RSS Feed",https://www.worldaffairsjournal.org/feed/
 "World News 4 You RSS Feed",https://www.worldnews2you.gq/feeds/posts/default?alt=rss

@@ -169,7 +169,8 @@ with open('listrss.txt', 'r') as file:
     stati(conn)
     reader = csv.reader(file)
     for row in reader:
-        # Process each row here
+        if row[0][0]=='#':
+            continue
         feedname=row[0]
         #print("Feed:", feedname)
         rssurl=row[1]
