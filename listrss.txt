@@ -59,7 +59,7 @@
 "Internewscast RSS Feed",https://internewscast.com/feed/
 "Just World Educational Blog RSS Feed",https://justworldeducational.org/category/blog/feed/
 "Just World News RSS Feed",https://justworldnews.org/feed/
-"KWT Today RSS Feed",https://kwttoday.com/feed/
+#Does no longer exist#"KWT Today RSS Feed",https://kwttoday.com/feed/
 "Lifestyle - South China Morning Post",https://www.scmp.com/rss/94/feed
 "Lifestyle Magazine RSS Feed",https://lmgfl.com/feed/
 "Looking Times RSS Feed",https://lookingtimes.blogspot.com/feeds/posts/default
@@ -152,3 +152,17 @@
 #No update since 2018#"Xinhuanet World News",http://www.xinhuanet.com/english/rss/worldrss.xml
 "Yahoo News - World RSS Feed",https://www.yahoo.com/news/rss/world/
 #Does no longer exist#"amnews247 RSS Feed",https://amnews247.com/feed/
+AP from github.com/rererecursive/associated-press-rss business.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/business.xml
+AP from github.com/rererecursive/associated-press-rss climate-and-environment.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/climate-and-environment.xml
+AP from github.com/rererecursive/associated-press-rss entertainment.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/entertainment.xml
+AP from github.com/rererecursive/associated-press-rss health.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/health.xml
+AP from github.com/rererecursive/associated-press-rss lifestyle.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/lifestyle.xml
+AP from github.com/rererecursive/associated-press-rss oddities.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/oddities.xml
+AP from github.com/rererecursive/associated-press-rss politics.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/politics.xml
+AP from github.com/rererecursive/associated-press-rss religion.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/religion.xml
+AP from github.com/rererecursive/associated-press-rss science.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/science.xml
+AP from github.com/rererecursive/associated-press-rss sports.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/sports.xml
+AP from github.com/rererecursive/associated-press-rss technology.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/technology.xml
+AP from github.com/rererecursive/associated-press-rss travel.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/travel.xml
+AP from github.com/rererecursive/associated-press-rss us-news.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/us-news.xml
+AP from github.com/rererecursive/associated-press-rss world-news.xml,http://associated-press.s3-website-us-east-1.amazonaws.com/world-news.xml
