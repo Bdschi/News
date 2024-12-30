@@ -99,7 +99,7 @@
 "Swagonnews RSS Feed",https://swagonnews.com/feed/
 "TFT News RSS Feed",https://tftnews.com/feed/
 "TIME » World RSS Feed",http://feeds.feedburner.com/time/world
-"TORONTO STAR » World RSS Feed",http://www.thestar.com/content/thestar/feed.RSSManagerServlet.articles.news.world.rss
+"TORONTO STAR » World RSS Feed",https://www.thestar.com/search/?f=rss&t=article&c=news*&l=50&s=start_time&sd=desc
 "The Baltic Word RSS Feed",https://balticword.eu/feed
 "The Cipher Brief RSS Feed",https://www.thecipherbrief.com/feed
 "The Daniels Post World RSS Feed",https://danielspost.news.blog/feed/
