@@ -178,12 +178,12 @@ with open('listrss.txt', 'r') as file:
             resp = requests.get(rssurl, headers={"User-Agent":"Mozilla/5.0"}, timeout=20.0)
             content = BytesIO(resp.content)
             feed = feedparser.parse(content)
+            print(f"{feedname} ({feed.feed.title})")
         except:
             #traceback.print_exc()
             print(f"{feedname}: No RSS Feed at '{rssurl}'")
             feed=None 
-        if feed and "feed" in feed and "title" in feed.feed:
-            print(f"{feedname} ({feed.feed.title})")
+        if feed and "entries" in feed:
             # Loop through the entries and print titles
             for entry in feed.entries:
                 new=saveart(conn,feedname,entry.title,entry.link,entry.get("published"),entry.get("description"))
