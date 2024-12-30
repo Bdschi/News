@@ -89,7 +89,7 @@
 "Reporter Fox RSS Feed",https://www.reporterfox.com/feed/
 "Reuters Entertainment and Lifestyle RSS Feed",https://www.reutersagency.com/feed/?best-topics=lifestyle-entertainment&post_type=best
 "Reuters RSS Feed",https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best
-"Reuters » World News RSS Feed",
+"Reuters » World News RSS Feed",http://feeds.reuters.com/Reuters/worldNews
 "Right Wire Report RSS Feed",https://rightwirereport.com/feed/
 "Sky News » World RSS Feed",http://feeds.skynews.com/feeds/rss/world.xml
 "Small Wars Journal Blog RSS Feed",https://smallwarsjournal.com/rss/blogs
@@ -123,32 +123,32 @@
 "The Union Journal RSS Feed",https://www.theunionjournal.com/feed/
 "The Washington Times » World RSS Feed",http://www.washingtontimes.com/rss/headlines/news/world
 "The World Association of Newspapers - IFRA RSS Feed",https://wan-ifra.org/news/feed/
-"Thedetrend | A world news website RSS Feed",https://thedetrend.com/feed/
+#Does no longer exist#"Thedetrend | A world news website RSS Feed",https://thedetrend.com/feed/
 "Three Men On A Boat RSS Feed",https://3-mob.com/feed/
 "TimeSpek RSS Feed",https://timespek.com/feed/
 "Times of India » World News RSS Feed",https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
 "Today Online - World RSS Feed",
-"Trend Hunter RSS Feeds",https://www.trendhunter.com/rssfeeds
+"Trend Hunter RSS Feeds",https://www.trendhunter.com/rss
 "U.S. News & World Report RSS Feed",
-"USA TODAY RSS Feed",https://usatoday.com
+"USA TODAY RSS Feed",http://www.usatoday.com/rss/
 "USNN World News RSS Feed",https://www.usnn.news/feed/
 "Vivian Violine's blog RSS Feed",https://www.blogger.com/feeds/2886832199291333748/posts/default
 "Vox RSS Feed",https://www.vox.com/rss/index.xml
 "Vox » World RSS Feed",https://www.vox.com/rss/world-politics/index.xml
 "War News Updates RSS Feed",http://feeds.feedburner.com/WarNewsUpdates
 "War on the Rocks RSS Feed",https://warontherocks.com/feed/
-#"Washington Post » World RSS Feed",https://feeds.washingtonpost.com/rss/world
+"Washington Post » World RSS Feed",https://feeds.washingtonpost.com/rss/world
 "Watchdog Uganda RSS Feed",https://www.watchdoguganda.com/feed
-"World Affairs Journal RSS Feed",https://www.worldaffairsjournal.org/feed/
-"World News 4 You RSS Feed",https://www.worldnews2you.gq/feeds/posts/default?alt=rss
+#Does no longer exist#"World Affairs Journal RSS Feed",https://www.worldaffairsjournal.org/feed/
+#Does no longer exist#"World News 4 You RSS Feed",https://www.worldnews2you.gq/feeds/posts/default?alt=rss
 "World United News RSS Feed",http://worldunitednews.blogspot.com/feeds/posts/default
 "World Weekly News RSS Feed",https://worldweeklynews.com/feed/
 "World update RSS Feed",https://worldupdatedaily.blogspot.com/feeds/posts/default?alt=rss
 "World's Top Exports RSS Feed",https://www.worldstopexports.com/feed/
 "WorldNewsEra RSS Feed",https://worldnewsera.com/feed/
-"Worldpress live RSS Feed",https://www.worldpresslive.com/feeds/posts/default
+#Does no longer exist#"Worldpress live RSS Feed",https://www.worldpresslive.com/feeds/posts/default
 "Wowplus RSS Feed",https://wowplus.net/feed/
-"Xinhuanet China News",http://www.xinhuanet.com/english/rss/chinarss.xml
-"Xinhuanet World News",http://www.xinhuanet.com/english/rss/worldrss.xml
+#No update since 2018#"Xinhuanet China News",http://www.xinhuanet.com/english/rss/chinarss.xml
+#No update since 2018#"Xinhuanet World News",http://www.xinhuanet.com/english/rss/worldrss.xml
 "Yahoo News - World RSS Feed",https://www.yahoo.com/news/rss/world/
-"amnews247 RSS Feed",https://amnews247.com/feed/
+#Does no longer exist#"amnews247 RSS Feed",https://amnews247.com/feed/
