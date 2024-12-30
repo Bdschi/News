@@ -4,7 +4,6 @@ import sqlite3
 import traceback
 import requests
 from io import BytesIO
-import urllib
 
 def inittable():
     conn = sqlite3.connect('keywords.db')
@@ -178,8 +177,6 @@ with open('listrss.txt', 'r') as file:
         try:
             resp = requests.get(rssurl, headers={"User-Agent":"Mozilla/5.0"}, timeout=20.0)
             content = BytesIO(resp.content)
-            #resp = urllib.request.urlopen(rssurl)
-            #content = BytesIO(resp.read())
             feed = feedparser.parse(content)
             if "title" in feed.feed:
                 print(f"{feedname} ({feed.feed.title})")
