@@ -104,7 +104,7 @@ def main():
     iso_week_number = current_timestamp.isocalendar().week
     # Calculate the number of days to subtract to get to the last Thursday
     #today = datetime.date.today()
-    days_to_thursday = (current_timestamp.weekday() - 3) % 7  # 3 is Thursday (0=Monday, 6=Sunday)
+    days_to_thursday = current_timestamp.weekday() - 3  # 3 is Thursday (0=Monday, 6=Sunday)
     # Get the date of the Thursday of the current week
     thursday_date = current_timestamp - timedelta(days=days_to_thursday)
     # Get the year of that Thursday

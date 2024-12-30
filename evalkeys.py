@@ -14,7 +14,7 @@ def weekyear(timestamp):
     iso_week_number = timestamp.isocalendar().week
     # Calculate the number of days to subtract to get to the last Thursday
     #today = datetime.date.today()
-    days_to_thursday = (timestamp.weekday() - 3) % 7  # 3 is Thursday (0=Monday, 6=Sunday)
+    days_to_thursday = timestamp.weekday() - 3  # 3 is Thursday (0=Monday, 6=Sunday)
     # Get the date of the Thursday of the week
     thursday_date = timestamp - timedelta(days=days_to_thursday)
     thursday_year = thursday_date.year
