@@ -134,4 +134,7 @@ def main():
     conn.close()
 
 if __name__ == "__main__":
+    print(f"Program name: {sys.argv[0]}")
+    print(f"Begin at {datetime.now()}")
     main()
+    print(f"End at {datetime.now()}")
