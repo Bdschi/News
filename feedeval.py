@@ -71,6 +71,48 @@ def initRssfeed():
 
     conn.close()
 
+def cleanleadingblank():
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        update rssarticles set source = ltrim(source)
+        where source like ' %'
+    ''')
+    # Commit the changes and close the connection
+    conn.commit()
+    conn.close()
+
+def cleandailyecho():
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        update rssarticles
+        set source = rssfeed.name
+        from rssfeed
+        where rssarticles.feed_id = rssfeed.id and rssfeed.name like 'RSS % Feeds from Daily Echo'
+    ''')
+    cursor.execute('''
+        update rssarticles
+        set source = 'Daily Echo RSS ' || replace(replace(source, ' Feeds from Daily Echo', ''), 'RSS ', '') || ' Feed'
+        where source like 'RSS % Feeds from Daily Echo'
+    ''')
+    # Commit the changes and close the connection
+    conn.commit()
+    conn.close()
+
+def allignidandname():
+    conn = sqlite3.connect('keywords.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        update rssarticles
+        set feed_id = rssfeed.id
+        from rssfeed
+        where rssarticles.source = rssfeed.name
+    ''')
+    # Commit the changes and close the connection
+    conn.commit()
+    conn.close()
+
 def stati(conn):
     cursor = conn.cursor()
     cursor.execute('''
@@ -79,6 +121,16 @@ def stati(conn):
         ''')
     stat = cursor.fetchone()
     print(stat)
+
+def statl(conn):
+    cursor = conn.cursor()
+    cursor.execute('''
+        select source, count(*), count(distinct date(ts))
+        from rssarticles
+        group by source
+        ''')
+    for row in cursor:
+        print(row)
 
 def listi():
     conn = sqlite3.connect('keywords.db')
@@ -106,6 +158,10 @@ def listf():
 #initRssfeed()
 #listf()
 #listi()
+#cleanleadingblank()
+#cleandailyecho()
+allignidandname()
 conn = sqlite3.connect('keywords.db')
 stati(conn)
+statl(conn)
 conn.close()
