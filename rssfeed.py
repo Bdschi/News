@@ -58,6 +58,8 @@ def regFeed(conn,name):
         id=getFeedId(conn,name)
     return id
 
+print("RSS Feed Reader")
+print("Started at: ", datetime.datetime.now())
 with open('listrss.txt', 'r') as file:
     conn = sqlite3.connect('keywords.db')
     reader = csv.reader(file)
@@ -89,3 +91,4 @@ with open('listrss.txt', 'r') as file:
                     #print("\tPublished Date:", entry.get("published"))
                     #print("\tDescription:", entry.get("description"))
     conn.close()
+print("Enddd at: ", datetime.datetime.now())
