@@ -31,7 +31,11 @@
 "DER SPIEGEL RSS Feed",https://www.spiegel.de/international/index.rss
 "DMWIRE RSS Feed",https://dmwire.com/feed/
 "DW News RSS Feed",https://rss.dw.com/rdf/rss-en-all
-"Daily Echoed RSS Feed",https://www.dailyechoed.com/feed
+"Daily Echo RSS News Feeds",https://www.dailyecho.co.uk/news/rss/
+"Daily Echo RSS Health Feeds",https://www.dailyecho.co.uk/news/health/rss/
+"Daily Echo RSS Travel Feeds",https://www.dailyecho.co.uk/news/travel/rss/
+"Daily Echo RSS Leisure Feeds",https://www.dailyecho.co.uk/leisure/rss/
+# Does no longer exist#"Daily Echoed RSS Feed",https://www.dailyechoed.com/feed
 "Daily Express » World News RSS Feed",http://feeds.feedburner.com/daily-express-world-news
 "Daily Mirror - World news RSS Feed",http://www.mirror.co.uk/news/world-news/rss.xml
 "Daily Research Plot RSS Feed",https://dailyresearchplot.com/feed/
@@ -81,7 +85,7 @@
 "Quicktrendnews RSS Feed",https://quicktrendnews.wordpress.com/feed/
 "QuintDaily RSS Feed",https://quintdaily.com/feed/
 "RAND » International Affairs RSS Feed",https://www.rand.org/topics/international-affairs.xml/feed
-"RT » World news RSS Feed",https://www.rt.com/rss/news/
+#Blocked by EU sanctions#"RT » World news RSS Feed",https://www.rt.com/rss/news/
 "Radarr Africa RSS Feed",https://radarr.africa/feed/
 "Randy Salars News And Comment RSS Feed",https://salars.net/feed/
 "RapidGist RSS Feed",https://www.rapidgist.com/feed/
@@ -94,7 +98,7 @@
 "Sky News » World RSS Feed",http://feeds.skynews.com/feeds/rss/world.xml
 "Small Wars Journal Blog RSS Feed",https://smallwarsjournal.com/rss/blogs
 "South China Morning Post RSS Feed",https://www.scmp.com/rss/91/feed
-"Sputnik - World RSS Feed",
+#Blocked by EU sanctions#"Sputnik - World RSS Feed",
 "Sure Source24 RSS Feed",https://www.suresource24.com/feeds/posts/default
 "Swagonnews RSS Feed",https://swagonnews.com/feed/
 "TFT News RSS Feed",https://tftnews.com/feed/
