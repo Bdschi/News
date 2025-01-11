@@ -101,15 +101,6 @@ def main():
     seven_days = current_timestamp - timedelta(days=7)
     articles = get_latest_news(api_key, fromdate=seven_days, query='lifestyle')
 
-    iso_week_number = current_timestamp.isocalendar().week
-    # Calculate the number of days to subtract to get to the last Thursday
-    #today = datetime.date.today()
-    days_to_thursday = current_timestamp.weekday() - 3  # 3 is Thursday (0=Monday, 6=Sunday)
-    # Get the date of the Thursday of the current week
-    thursday_date = current_timestamp - timedelta(days=days_to_thursday)
-    # Get the year of that Thursday
-    thursday_year = thursday_date.year
-
     # Connect to SQLite database (or create it if it doesn't exist)
     conn = sqlite3.connect('keywords.db')
     cursor = conn.cursor()
@@ -117,11 +108,11 @@ def main():
         keywords = extract_keywords(flag, articles)
         keywords = dict(sorted(keywords.items(), key=lambda item: item[1], reverse=True))
         for phrase, score in keywords.items():
-            #print(f"{current_timestamp},{thursday_year}{iso_week_number},{score},\"{phrase}\"")
+            #print(f"{current_timestamp},{score},\"{phrase}\"")
             cursor.execute('''
-            INSERT INTO keywords (ts,week,flag,score,phrase)
-            VALUES (?, ?, ?, ?, ?)
-            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M:%S"),100*thursday_year+iso_week_number,flag,score,phrase))
+            INSERT INTO keywords (ts,flag,score,phrase)
+            VALUES (?, ?, ?, ?)
+            ''', (current_timestamp.strftime("%Y-%m-%d %H:%M:%S"),flag,score,phrase))
     else:
         print("no articles found")
 

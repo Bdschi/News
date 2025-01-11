@@ -10,16 +10,6 @@ def contains_special_char_word(text):
       return True
   return False
 
-def weekyear(timestamp):
-    iso_week_number = timestamp.isocalendar().week
-    # Calculate the number of days to subtract to get to the last Thursday
-    #today = datetime.date.today()
-    days_to_thursday = timestamp.weekday() - 3  # 3 is Thursday (0=Monday, 6=Sunday)
-    # Get the date of the Thursday of the week
-    thursday_date = timestamp - timedelta(days=days_to_thursday)
-    thursday_year = thursday_date.year
-    return 100*thursday_year+iso_week_number
-
 def upts_phrase(connection, ts, phrase, correctedPhrase):
     """
     updates the phrase in a database table based on the provided correctedPhrase.
@@ -59,53 +49,50 @@ def main():
     cursor = conn.cursor()
 
     current_timestamp = datetime.now()
-    thisweek=weekyear(current_timestamp)
-    lastweek_timestamp = current_timestamp - timedelta(days=7)
-    lastweek=weekyear(lastweek_timestamp)
 
     cursor.execute(f'SELECT COUNT(*) FROM keywords')
     count = cursor.fetchone()[0]  # Fetch the result
     print(f'The number of records in the table "keywords" is: {count}')
 
-    cursor.execute("SELECT COUNT(distinct ts) tsc FROM keywords where week=?",(thisweek,))
-    tsthis = cursor.fetchone()[0]  # Fetch the result
-    print(f'The number of timestamps in the table "keywords" for this week is: {tsthis}')
-
-    cursor.execute("SELECT max(ts) mts FROM keywords where week=?",(thisweek,))
+    cursor.execute("SELECT max(ts) mts FROM keywords")
     latestts = cursor.fetchone()[0]  # Fetch the result
-    print(f'The latest timestamp in the table "keywords" for this week is: {latestts}')
+    print(f'The latest timestamp in the table "keywords": {latestts}')
+
+    cursor.execute("SELECT COUNT(distinct ts) tsc FROM keywords where ts > datetime(?, '-7 days')",(latestts,))
+    ts7days = cursor.fetchone()[0]  # Fetch the result
+    print(f'The number of timestamps in the table "keywords" in the 7 days before {latestts} is: {ts7days}')
 
     print("find words with only special characters")
     cursor.execute('''
-        SELECT ts, week, phrase, score FROM keywords''')
+        SELECT ts, phrase, score FROM keywords''')
     for row in cursor:
-        if contains_special_char_word(row[2]):
-            correctedPhrase = re.sub(' [^a-zA-Z0-9£$€]+ ', ' ', ' '+row[2]+' ')
+        if contains_special_char_word(row[1]):
+            correctedPhrase = re.sub(' [^a-zA-Z0-9£$€]+ ', ' ', ' '+row[1]+' ')
             correctedPhrase = re.sub(' +', ' ', correctedPhrase)
             correctedPhrase = re.sub(' $', '', correctedPhrase)
             correctedPhrase = re.sub('^ ', '', correctedPhrase)
-            if correctedPhrase != row[2]:
-                print(f"update '{row[2]}' by '{correctedPhrase}' for {row[0]}")
-                upts_phrase(conn, row[0], row[2], correctedPhrase)
+            if correctedPhrase != row[1]:
+                print(f"update '{row[1]}' by '{correctedPhrase}' for {row[0]}")
+                upts_phrase(conn, row[0], row[1], correctedPhrase)
 
     print("Delete empty keywords")
     cursor.execute("DELETE FROM keywords WHERE phrase=''")
     conn.commit()
 
     cursor.execute('''
-        create temporary table weekstat as
+        create temporary table sevendaysstat as
         select phrase, score from (
             select phrase, sum(score)/? score
             from keywords
-            where week=?
-            and ts!=?
-            group by phrase) x''',(tsthis,thisweek,latestts))
+            where ts!=?
+            and ts > datetime(?, '-7 days')
+            group by phrase) x''',(ts7days,latestts,latestts))
     conn.commit()
 
     print("highest new phrases")
     cursor.execute('''
         select k.score, k.phrase
-        from keywords k left outer join weekstat w
+        from keywords k left outer join sevendaysstat w
         on k.phrase = w.phrase
         where w.phrase is NULL
         and k.ts=?
@@ -116,7 +103,7 @@ def main():
     print("highest climbing phrases")
     cursor.execute('''
         select k.score, k.phrase, w.score
-        from keywords k, weekstat w
+        from keywords k, sevendaysstat w
         where k.phrase = w.phrase
         and k.ts=?
         order by k.score/w.score desc limit 20''',(latestts,))
@@ -132,7 +119,7 @@ def main():
     for row in cursor:
         print(f"{row[0]:5.1f} '{row[1]}'")
 
-    cursor.execute("select week, ts, flag, count(*) from keywords group by ts, week, flag")
+    cursor.execute("select ts, flag, count(*) from keywords group by ts, flag")
     for row in cursor:
         print(row)
 
